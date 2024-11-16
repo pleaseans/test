@@ -2,6 +2,15 @@
 
 MainActivity.kt
 
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -712,6 +721,12 @@ AndroidManifest.xml
 03-listview
 
 MainActivity.kt
+import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -752,6 +767,14 @@ data class Person(val name: String, val age: Int, val gender: String,val imageRe
 
 
 PersonAdapter.kt
+
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.TextView
 
 class PersonAdapter(context: Context, private val resource: Int, private val persons: List<Person>) :
     ArrayAdapter<Person>(context, resource, persons) {
@@ -844,6 +867,17 @@ list_item.xml
 
 MainActivity.kt
 
+import android.database.Cursor
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ListView
+import android.widget.SimpleCursorAdapter
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 class MainActivity : AppCompatActivity() {
 
     private lateinit var database: Database
@@ -1016,6 +1050,11 @@ class MainActivity : AppCompatActivity() {
 Database.kt
 
 
+import android.content.ContentValues
+import android.content.Context
+import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
 private const val DB_NAME = "BusManagement"
 private const val DB_VERSION = 1
 
@@ -1187,7 +1226,7 @@ acivity_main
 
 
 
-list_main.xml
+list_item.xml
 
 
 <?xml version="1.0" encoding="utf-8"?>
@@ -1469,6 +1508,19 @@ AndroidManifest.xml
 
 MainActivity.kt
 
+import android.Manifest
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.content.pm.PackageManager
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.text.TextUtils
+import android.util.Log
+import android.widget.TextView
+import androidx.core.app.ActivityCompat
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
 class MainActivity : AppCompatActivity() {
     private val SMS_PERMISSION_CODE = 100
@@ -1504,7 +1556,18 @@ class MainActivity : AppCompatActivity() {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(smsReceiver)
     }
 }
+
+
 SmsReceiver.kt
+
+
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.telephony.SmsMessage
+import android.util.Log
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
 class SmsReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
@@ -1602,7 +1665,7 @@ manifest
 
 
 MainActivity.kt
-package com.example.ex_7
+
 
 import android.content.Intent
 import android.net.Uri
@@ -1646,7 +1709,7 @@ class MainActivity : AppCompatActivity() {
 
 MediaPlayerService.kt
 
-package com.example.ex_7
+
 
 import android.app.Service
 import android.content.Intent
@@ -1762,6 +1825,20 @@ activity_main.xml
 08-sms and phone no
 
 MainActivity.kt
+
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import android.Manifest
+import android.content.pm.PackageManager
+import android.telephony.SmsMessage
+import android.telephony.gsm.SmsManager
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -2029,6 +2106,13 @@ AndroidManifest.xml
 
 MainActivity.kt
 
+import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+
 class MainActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
@@ -2096,6 +2180,12 @@ activity_main
 
 FragmentOne.kt
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+
 class FragmentOne : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container:
     ViewGroup?,savedInstanceState: Bundle?
@@ -2105,7 +2195,7 @@ class FragmentOne : Fragment() {
 }
 
 
-xml
+fragment_one.xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -2211,7 +2301,12 @@ xml
 </LinearLayout>
 
 
-two.kt
+FragmentTwo.kt
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 class FragmentTwo : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -2221,7 +2316,7 @@ class FragmentTwo : Fragment() {
     }
 }
 
-xml
+fragment_two.xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -2356,7 +2451,14 @@ xml
 </LinearLayout>
 
 
-three
+FragmentThree.kt
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.example.exp10.R
 
 class FragmentThree : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -2365,7 +2467,7 @@ class FragmentThree : Fragment() {
     }
 }
 
-xml
+fragment_three.xml
 
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
@@ -2468,7 +2570,7 @@ xml
 
 </LinearLayout>
 
-build.gradle
+build.gradle(app)
 
 
 dependencies {
@@ -2487,9 +2589,12 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.6.1")
 }
 
-viewpageRADAPTER.kt
+ViewPagerAdapter.kt
 
-
+import FragmentThree
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
 class ViewPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
     override fun getItemCount(): Int = 3 // Number of tabs
 
